@@ -1,8 +1,11 @@
 # Certificate Discovery Tool
 
+[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 A Python CLI tool for scanning filesystems to discover and analyze SSL/TLS certificates. The tool extracts detailed certificate information and stores it in a SQLite database for querying and analysis.
 
-## Features
+## ✨ Features
 
 - **Multi-format Support**: Handles PEM, DER, and PKCS#12 certificate formats
 - **Comprehensive Analysis**: Extracts detailed certificate metadata including:
@@ -19,7 +22,7 @@ A Python CLI tool for scanning filesystems to discover and analyze SSL/TLS certi
 - **Smart File Detection**: Identifies potential certificate files by extension and content
 - **Statistics and Reporting**: Built-in statistics and analysis features
 
-## Installation
+## 🚀 Installation
 
 ### Using uv (Recommended)
 
@@ -44,7 +47,7 @@ This project is configured to work with [uv](https://github.com/astral-sh/uv), a
 pip install -r requirements.txt
 ```
 
-## Usage
+## 📖 Usage
 
 ### Basic Usage
 
@@ -139,7 +142,7 @@ Verbose scanning with custom paths:
 python find_cert.py -v /home/user/certificates /var/ssl
 ```
 
-## Database Schema
+## 🗄️ Database Schema
 
 The tool creates a SQLite database with the following certificate information:
 
@@ -162,7 +165,7 @@ The tool automatically detects and processes:
 - **PKCS#12 files**: `.p12`, `.pfx`, `.pkcs12`
 - **Other formats**: Files with certificate-related names or content
 
-## Platform-Specific Notes
+## 🖥️ Platform-Specific Notes
 
 ### macOS
 - Default scan paths include `/Library/Keychains`, `/System/Library/Keychains`
@@ -188,7 +191,7 @@ The tool automatically detects and processes:
 - Creates database indexes for efficient querying
 - Thread-local database connections for thread safety
 
-## Requirements
+## 📦 Requirements
 
 - Python 3.8+ (when using uv)
 - Python 3.6+ (when using pip)
