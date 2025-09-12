@@ -21,6 +21,22 @@ A Python CLI tool for scanning filesystems to discover and analyze SSL/TLS certi
 
 ## Installation
 
+### Using uv (Recommended)
+
+This project is configured to work with [uv](https://github.com/astral-sh/uv), a fast Python package manager:
+
+1. Clone or download this repository
+2. Install uv if you haven't already:
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+3. Install dependencies and set up the project:
+   ```bash
+   uv sync
+   ```
+
+### Using pip (Alternative)
+
 1. Clone or download this repository
 2. Install the required dependencies:
 
@@ -31,6 +47,20 @@ pip install -r requirements.txt
 ## Usage
 
 ### Basic Usage
+
+#### Using uv (Recommended)
+
+Scan default system directories:
+```bash
+uv run find-cert
+```
+
+Scan specific directories:
+```bash
+uv run find-cert /path/to/scan /another/path
+```
+
+#### Using pip
 
 Scan default system directories:
 ```bash
@@ -44,20 +74,50 @@ python find_cert.py /path/to/scan /another/path
 
 ### Command Line Options
 
+#### Using uv
 ```bash
-python find_cert.py [OPTIONS] [PATHS...]
-
-Options:
-  -d, --database PATH     SQLite database path (default: certificates.db)
-  -r, --recursive         Recursive scan (default: True)
-  --no-recursive          Non-recursive scan
-  -w, --workers N         Number of worker threads (default: 4)
-  -v, --verbose           Verbose logging
-  --stats                 Show database statistics
-  -h, --help              Show help message
+uv run find-cert [OPTIONS] [PATHS...]
 ```
 
+#### Using pip
+```bash
+python find_cert.py [OPTIONS] [PATHS...]
+```
+
+**Options:**
+- `-d, --database PATH`     SQLite database path (default: certificates.db)
+- `-r, --recursive`         Recursive scan (default: True)
+- `--no-recursive`          Non-recursive scan
+- `-w, --workers N`         Number of worker threads (default: 4)
+- `-v, --verbose`           Verbose logging
+- `--stats`                 Show database statistics
+- `-h, --help`              Show help message
+
 ### Examples
+
+#### Using uv
+
+Scan a specific directory recursively:
+```bash
+uv run find-cert -r /etc/ssl
+```
+
+Scan with custom database and more workers:
+```bash
+uv run find-cert -d my_certs.db -w 8 /usr/local/share/ca-certificates
+```
+
+Show statistics from existing database:
+```bash
+uv run find-cert --stats
+```
+
+Verbose scanning with custom paths:
+```bash
+uv run find-cert -v /home/user/certificates /var/ssl
+```
+
+#### Using pip
 
 Scan a specific directory recursively:
 ```bash
@@ -130,8 +190,26 @@ The tool automatically detects and processes:
 
 ## Requirements
 
-- Python 3.6+
+- Python 3.8+ (when using uv)
+- Python 3.6+ (when using pip)
 - cryptography >= 41.0.0
+
+## uv Features
+
+When using uv, you get additional benefits:
+
+- **Fast dependency resolution**: uv resolves dependencies much faster than pip
+- **Automatic virtual environment**: No need to manually create or activate venvs
+- **Reproducible builds**: Lock files ensure consistent dependency versions
+- **Easy dependency management**: Add/remove packages with simple commands:
+  ```bash
+  uv add package-name          # Add a new dependency
+  uv add --dev package-name   # Add a development dependency
+  uv remove package-name      # Remove a dependency
+  uv sync --upgrade           # Update all dependencies
+  ```
+- **Modern Python packaging**: Uses `pyproject.toml` for configuration
+- **Entry point scripts**: Run the tool with `uv run find-cert` instead of `python find_cert.py`
 
 ## License
 
@@ -145,6 +223,13 @@ Contributions are welcome! Please feel free to submit issues, feature requests, 
 
 ### Permission Issues
 On macOS and Linux, some system directories may require elevated privileges:
+
+**Using uv:**
+```bash
+sudo uv run find-cert
+```
+
+**Using pip:**
 ```bash
 sudo python find_cert.py
 ```

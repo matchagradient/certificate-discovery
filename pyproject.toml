@@ -1,0 +1,25 @@
+[project]
+name = "certificate-discovery"
+version = "0.1.0"
+description = "Certificate Scanner CLI - Scans filesystem for SSL/TLS certificates and stores information in SQLite database"
+authors = [
+    {name = "Mike", email = "mike@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "cryptography>=41.0.0",
+]
+
+[project.scripts]
+find-cert = "find_cert:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[tool.uv]
+dev-dependencies = []
