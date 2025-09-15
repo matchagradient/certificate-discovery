@@ -3,6 +3,7 @@
 [![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 A Python CLI tool for scanning filesystems to discover and analyze SSL/TLS certificates. The tool extracts detailed certificate information and stores it in a SQLite database for querying and analysis.
 
 ## ✨ Features
